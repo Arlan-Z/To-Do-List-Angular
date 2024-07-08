@@ -7,11 +7,13 @@ import { MainViewComponent } from './pages/main-view/main-view.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AddWindowComponent } from './components/add-window/add-window.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainViewComponent
+    MainViewComponent,
+    AddWindowComponent
   ],
   imports: [
     BrowserModule,
