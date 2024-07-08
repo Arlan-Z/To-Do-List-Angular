@@ -9,6 +9,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AddWindowComponent } from './components/add-window/add-window.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { AddWindowComponent } from './components/add-window/add-window.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DragDropModule
+    DragDropModule,
+    FormsModule,
   ],
   providers: [
     provideAnimationsAsync()

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-add-window',
@@ -7,11 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AddWindowComponent {
   isWindowVisible: boolean = false;
-  buttonValue: string = "🠇"
+  buttonValue: string = "🠇";
+  taskTitle: string = "";
+
+  @Input() column: any;
 
 
-  toggleWindow(){
+  toggleWindow() {
+    if (this.isWindowVisible && this.taskTitle != "") {
+      this.column.addTask(this.taskTitle);
+      this.taskTitle = "";
+    }
+    
     this.isWindowVisible = !this.isWindowVisible;
-    this.buttonValue = !this.isWindowVisible ? "🠇" : "✓︎";
+    this.buttonValue = this.isWindowVisible ? "✓︎" : "🠇";
   }
 }

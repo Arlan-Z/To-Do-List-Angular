@@ -10,7 +10,7 @@
     <div class="board">
 
         <div class="board-bar">
-            <p class="board-name">Board Name</p> 
+            <p class="board-name">Just Do It</p> 
         </div>
 
         <div class="board-wrapper">
@@ -29,12 +29,17 @@
                     (cdkDropListDropped)="drop($event)">
                         <div class="task" *ngFor="let item of column.tasks" cdkDrag>
                             {{ item }}
+                            <div class="btn-container">
+                                <button class="delete-btn" (click)="deleteTask(item, column)">✖</button>
+                            </div>
                         </div>
 
                         
                     </div>
 
-                    <app-add-window></app-add-window>
+                    <app-add-window
+                    [column]="column" 
+                    ></app-add-window>
                 </div>
 
             </div>

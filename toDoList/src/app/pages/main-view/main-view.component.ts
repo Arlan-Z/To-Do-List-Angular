@@ -1,47 +1,46 @@
-import { Component } from '@angular/core';
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-  CdkDrag,
-  CdkDropList,
-} from '@angular/cdk/drag-drop';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Board } from '../../models/board.model';
 import { Column } from '../../models/column.model';
 
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
-  styleUrl: './main-view.component.scss',
+  styleUrls: ['./main-view.component.scss'],
 })
-export class MainViewComponent {
-  constructor(){}
-
+export class MainViewComponent implements OnInit, OnDestroy {
   board: Board = new Board('Test', [
     new Column('Ideas', [
       "Some Random Idea",
       "Build an App"
     ]),
-    new Column('Research',[
+    new Column('Research', [
       "Hello",
       "Bye"
     ]),
     new Column('ToDo', [
-      'Get to work', 
-      'Pick up groceries', 
-      'Go home', 
-      'Fall asleep'
+      'Get to work',
+      'Pick up groceries',
+      'Go home',
     ]),
-    new Column('Done',[
-      'Get up', 
-      'Brush teeth', 
-      'Take a shower', 
-      'Check e-mail', 
-      'Walk dog'
+    new Column('Done', [
+      'Get up',
+      'Brush teeth',
+      'Take a shower',
     ])
-  ])
+  ]);
+
+  ngOnInit(): void {
+    this.loadData();
+  }
+
+  ngOnDestroy(): void {
+    this.saveData();
+  }
 
   drop(event: CdkDragDrop<string[]>) {
+    if (event.container.data.length >= 3) return;
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -51,6 +50,24 @@ export class MainViewComponent {
         event.previousIndex,
         event.currentIndex,
       );
+    }
+
+    this.saveData();
+  }
+
+  deleteTask(task: any, column: Column) {
+    column.deleteTask(task);
+    this.saveData();
+  }
+
+  saveData() {
+    localStorage.setItem('board', JSON.stringify(this.board));
+  }
+
+  loadData() {
+    const savedBoard = localStorage.getItem('board');
+    if (savedBoard) {
+      this.board = JSON.parse(savedBoard);
     }
   }
 }

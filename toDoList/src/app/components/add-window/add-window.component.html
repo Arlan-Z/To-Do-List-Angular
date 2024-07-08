@@ -3,4 +3,7 @@ class="add-more-container"
 (click)="toggleWindow()"
 [ngClass]="{'active': isWindowVisible}" 
 >{{ buttonValue }}</button>
-<input type="text" *ngIf="isWindowVisible" placeholder="Your Task">
+<input type="text" 
+*ngIf="isWindowVisible" 
+placeholder="Your Task" 
+[(ngModel)]="taskTitle">

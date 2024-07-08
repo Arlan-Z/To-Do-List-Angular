@@ -84,6 +84,8 @@
 
 .task{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 15px 12px;
     background: white;
     border-bottom: solid 2px #ddd;
@@ -94,6 +96,23 @@
     0 3px 14px 2px rgba(0, 0, 0, 0.05);
     
     margin-bottom: 15px;
+
+    .btn-container{
+        background: rgb(147, 59, 59);
+        padding: 12px 12px;
+        border-radius: 5px;
+
+        .delete-btn{
+            color: white;
+            font-size: 20px;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .btn-container:hover{
+        filter: brightness(0.8);
+    }
 }
 
 .cdk-drag-preview {
