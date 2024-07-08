@@ -11,22 +11,12 @@ import { Column } from '../../models/column.model';
 export class MainViewComponent implements OnInit, OnDestroy {
   board: Board = new Board('Test', [
     new Column('Ideas', [
-      "Some Random Idea",
-      "Build an App"
     ]),
     new Column('Research', [
-      "Hello",
-      "Bye"
     ]),
     new Column('ToDo', [
-      'Get to work',
-      'Pick up groceries',
-      'Go home',
     ]),
     new Column('Done', [
-      'Get up',
-      'Brush teeth',
-      'Take a shower',
     ])
   ]);
 
